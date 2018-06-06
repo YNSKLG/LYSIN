@@ -5,6 +5,7 @@ import org.lwjgl.opengl.ContextAttribs;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.PixelFormat;
 
 public class DisplayManager {
 
@@ -21,7 +22,7 @@ public class DisplayManager {
 		try {
 			
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-			Display.create();
+			Display.create(new PixelFormat(), attribs);
 			Display.setTitle("LYSIN");
 			Display.setResizable(true);
 						
