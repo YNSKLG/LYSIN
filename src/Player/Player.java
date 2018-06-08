@@ -47,6 +47,7 @@ public class Player {
 		this.name = name;
 	}
 	
+	//change var.Wert
 	public int changeHp(int hp, int change) {
 		hp =+ change;
 		return hp;
@@ -80,6 +81,7 @@ public class Player {
 		return coin;
 	}
 	
+	//DateiManager
 	public void saveData(String profil) {
 		FileReader isr = null;
 		//File objFile = new File(RES_LOC + profil + ".txt");
@@ -104,54 +106,57 @@ public class Player {
 					int a = Integer.parseInt(currentLine[1]);
 					player.setHp(a);
 				}
-				else if(line .startsWith("xp")) {
+				else if(line.startsWith("xp")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setXp(a);
 				}
-				else if(line .startsWith("avatar")) {
+				else if(line.startsWith("avatar")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setAvatar(a);
 				}
-				else if(line .startsWith("highscore")) {
+				else if(line.startsWith("highscore")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setHighscore(a);
 				}
-				else if(line .startsWith("meterRun")) {
+				else if(line.startsWith("meterRun")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setMeterRun(a);
 				}
-				else if(line .startsWith("timePlayed")) {
+				else if(line.startsWith("timePlayed")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setTimePlayed(a);
 				}
-				else if(line .startsWith("stars")) {
+				else if(line.startsWith("stars")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setStar(a);
 				}
-				else if(line .startsWith("death")) {
+				else if(line.startsWith("death")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setDeath(a);
 				}
-				else if(line .startsWith("coin")) {
+				else if(line.startsWith("coin")) {
 					String[] currentLine = line.split(" ");
 					int a = Integer.parseInt(currentLine[1]);
 					player.setCoin(a);
 				}
-				else if(line .startsWith("level")) {
+				else if(line.startsWith("level")) {
 					String[] currentLine = line.split(" ");
 					float a = Float.parseFloat(currentLine[1]);
 					player.setLevel(a);
 				}
-				else if(line .startsWith("xp")) {
+				else if(line.startsWith("name")) {
 					String[] currentLine = line.split(" ");
 					player.setName(currentLine[1]);
+				}
+				else {
+					break;
 				}
 			}
 			
@@ -160,6 +165,7 @@ public class Player {
 		}
 	}
 	
+	//getter-setter bis 250
 	public int getHighscore() {
 		return highscore;
 	}
