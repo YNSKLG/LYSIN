@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Player {
 	
-	private int highscore, meterRun, timePlayed, avatar, xp, hp, life, speed, size, star, death, coin;
+	private int highscore, meterRun, timePlayed, avatar, xp, hp, life, speed, star, death, coin;
 	private float effect, level; 							//Effect: Ganze Zahl Art des Effekts, Komma Stärke | level: Level&Checkpoint 
 	private String name;
 	private static final String RES_LOC = "res/models/";
@@ -21,7 +21,6 @@ public class Player {
 		hp = 5;
 		life = 1;
 		speed = 1;
-		size = 1;
 		star = 0;
 		effect = 0;
 		level = 0;
@@ -39,7 +38,6 @@ public class Player {
 		hp = 5;
 		life = 1;
 		speed = 1;
-		size = 1;
 		star = 0;
 		effect = 0;
 		level = 0;
@@ -93,7 +91,6 @@ public class Player {
 		try {
 			isr = new FileReader(Data);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -104,22 +101,146 @@ public class Player {
 				line = reader.readLine();
 				if(line.startsWith("hp")) {
 					String[] currentLine = line.split(" ");
-					String b = currentLine[1];
-					int a = Integer.parseInt(b);
+					int a = Integer.parseInt(currentLine[1]);
 					player.setHp(a);
+				}
+				else if(line .startsWith("xp")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setXp(a);
+				}
+				else if(line .startsWith("avatar")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setAvatar(a);
+				}
+				else if(line .startsWith("highscore")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setHighscore(a);
+				}
+				else if(line .startsWith("meterRun")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setMeterRun(a);
+				}
+				else if(line .startsWith("timePlayed")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setTimePlayed(a);
+				}
+				else if(line .startsWith("stars")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setStar(a);
+				}
+				else if(line .startsWith("death")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setDeath(a);
+				}
+				else if(line .startsWith("coin")) {
+					String[] currentLine = line.split(" ");
+					int a = Integer.parseInt(currentLine[1]);
+					player.setCoin(a);
+				}
+				else if(line .startsWith("level")) {
+					String[] currentLine = line.split(" ");
+					float a = Float.parseFloat(currentLine[1]);
+					player.setLevel(a);
+				}
+				else if(line .startsWith("xp")) {
+					String[] currentLine = line.split(" ");
+					player.setName(currentLine[1]);
 				}
 			}
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	public int getHighscore() {
+		return highscore;
+	}
+	public void setHighscore(int highscore) {
+		this.highscore = highscore;
+	}
+	public int getMeterRun() {
+		return meterRun;
+	}
+	public void setMeterRun(int meterRun) {
+		this.meterRun = meterRun;
+	}
+	public int getTimePlayed() {
+		return timePlayed;
+	}
+	public void setTimePlayed(int timePlayed) {
+		this.timePlayed = timePlayed;
+	}
+	public int getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
+	}
+	public int getXp() {
+		return xp;
+	}
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+	public int getLife() {
+		return life;
+	}
+	public void setLife(int life) {
+		this.life = life;
+	}
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	public int getStar() {
+		return star;
+	}
+	public void setStar(int star) {
+		this.star = star;
+	}
+	public int getDeath() {
+		return death;
+	}
+	public void setDeath(int death) {
+		this.death = death;
+	}
+	public int getCoin() {
+		return coin;
+	}
+	public void setCoin(int coin) {
+		this.coin = coin;
+	}
+	public float getEffect() {
+		return effect;
+	}
+	public void setEffect(float effect) {
+		this.effect = effect;
+	}
+	public float getLevel() {
+		return level;
+	}
+	public void setLevel(float level) {
+		this.level = level;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getHp() {
 		return hp;
 	}
-
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
