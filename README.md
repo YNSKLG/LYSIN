@@ -2,16 +2,16 @@
 
 Jump and Run
 
-Ziel: an das Ende kommen / kein Ziel / Checkpoints (statistik / Highscore) / Zeitlimit (Timer) / (Level (Sterne / Bewertungen))
+Ziel: an das Ende kommen / kein Ziel / Checkpoints (statistik / Highscore) / Zeitlimit (Timer) / Level (Sterne, Bewertungen, Tutorial)
 
-Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP /(geschwinigkeit/ sprunghÃ¶he/weite                                                         nach grÃ¶ÃŸe)
+Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP(100,) /(geschwinigkeit/ sprunghöhe/weite                                                         nach größe) / standart Steuerung : W (springen), A (links laufen), D(rechts laufen), (S (ducken))
 
-Items: schneller Laufen / hÃ¶her Springen / mehr (extra) Leben / HP auffÃ¼llen
+Buffs/pillenn: schneller Laufen(Blau, *2) / höher Springen(Gelb, +2m) / mehr (extra) Leben(Grün) / HP auffüllen(Rot, +25)
 
-Hindernisse: LÃ¶cher / Fallen / Bouncepad / bewegende Plattformen / RÃ¤tsel 
+Hindernisse: Löcher / Fallen / Bouncepad / bewegende Plattformen / Rätsel / Fallschaden(-10 pro 1m nach 4m fallhöhe (bei 4m -10,nach 6m-20,...(bei gelber pille aufpassen!)))
 
-Neg. Items: blindheit / langsamer / nicht so hoch springen 
+Debuffs: blindheit / langsamer / nicht so hoch springen / Schaden
 
 Welt: Story / Aussehen
 
-WÃ¤hrung ---> Upgrades von Charaktern / Einstellungen (Tastatur / Joystick)
+WÃhrung = runde tabletten ---> Upgrades von Charaktern / Einstellungen (Tastatur / Joystick)
