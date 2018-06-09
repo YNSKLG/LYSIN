@@ -92,7 +92,7 @@ public class Player extends Entity {
 			jump();
 		}
 		
-		Controller joystick = null;
+		/*Controller joystick = null;
 		
 		for(Controller c : ControllerEnvironment.getDefaultEnvironment().getControllers()) {
 			if(c.getType() == Controller.Type.STICK) {
@@ -129,7 +129,7 @@ public class Player extends Entity {
 				}
 			}
 			
-		}
+		}*/
 		
 		
 		/*if(Keyboard.isKeyDown(Keyboard.KEY_W) && isInAir) {
