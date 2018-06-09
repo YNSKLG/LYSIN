@@ -21,10 +21,7 @@ import objConverter.OBJFileLoader;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
-import terrains.Terrain;
 import textures.ModelTexture;
-import textures.TerrainTexture;
-import textures.TerrainTexturePack;
 import toolbox.InputHandler;
 
 public class MainGameLoop {
@@ -66,26 +63,7 @@ public class MainGameLoop {
 		textureTree.setShineDamper(0);
 		textureTree.setReflectivity(0);*/
 		
-				
-		// ***** TERRAIN TEXTURE *****
-		
-		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("enviroment/terrain/grass"));
-		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("enviroment/terrain/stone"));
-		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("enviroment/terrain/snow"));
-		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("enviroment/terrain/mulch"));
-		
-		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture,
-				gTexture, bTexture);
-		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("enviroment/terrain/blendmap"));
-	
-		
-		// ***** TERRAIN GENERATION *****
-		
-		System.out.println(LocalDateTime.now() + " *** Generating Terrain...");
-		
-		Terrain terrain = new Terrain(0, -1, loader, texturePack, blendMap, "heightmap");
-		
-		
+						
 		// ***** GUI *****
 		
 		List<GuiTexture> pauseGuis = new ArrayList<GuiTexture>();
@@ -110,7 +88,7 @@ public class MainGameLoop {
 		
 		Light sun = new Light(new Vector3f(300,500,0), new Vector3f(1,1,1));
 		Light lamp = new Light(new Vector3f(382, 
-				terrain.getHeightOfTerrain(382, -336) + 6.1f,-336), new Vector3f(1,1,1));
+				10 + 6.1f,-336), new Vector3f(1,1,1));
 		List<Light> lights = new ArrayList<Light>();
 		lights.add(sun);
 		lights.add(lamp);
@@ -126,14 +104,12 @@ public class MainGameLoop {
 				
 			if(!InputHandler.paused) {
 			
-				camera.move(terrain);
-				player.move(terrain);
+				camera.move();
+				player.move();
 			
 				//---RENDERER---
 			
 				renderer.renderShadowMap(entities, sun);
-			
-				renderer.processTerrain(terrain);
 			
 				//renderer.processEntity(entityTree);
 			

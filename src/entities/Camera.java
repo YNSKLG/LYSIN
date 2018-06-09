@@ -3,8 +3,6 @@ package entities;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
-import terrains.Terrain;
-
 public class Camera {
 	
 	private float GROUND_DISTANCE = 9;
@@ -23,13 +21,13 @@ public class Camera {
 		this.player = player;
 	}
 	
-	public void move(Terrain terrain) {
+	public void move() {
 		calculateZoom();
 		calculatePitch();
 		calculateAngleAroundPlayer();
 		float horizontalDistance = calculateHorizontalDistance();
 		float verticalDistance = calculateVerticalDistance();
-		calculateCameraPosition(horizontalDistance, verticalDistance, terrain);
+		calculateCameraPosition(horizontalDistance, verticalDistance);
 		this.yaw = 180 - (player.getRotY() + angleAroundPlayer);
 	}
 	
@@ -49,15 +47,13 @@ public class Camera {
 		return roll;
 	}
 	
-	private void calculateCameraPosition(float horizDistance, float verticDistance, Terrain terrain) {
+	private void calculateCameraPosition(float horizDistance, float verticDistance) {
 		float theta = player.getRotY() + angleAroundPlayer;
 		float offsetX = (float) (horizDistance * Math.sin(Math.toRadians(theta)));
 		float offsetZ = (float) (horizDistance * Math.cos(Math.toRadians(theta)));
 		position.x = player.getPosition().x - offsetX;
 		position.z = player.getPosition().z - offsetZ;
 		position.y = player.getPosition().y + verticDistance + GROUND_DISTANCE;
-		if(position.y <= terrain.getHeightOfTerrain(position.x, position.z) + 0.5f) 
-			position.y = terrain.getHeightOfTerrain(position.x, position.z) + 0.5f;
 		if(pitch >= 45) pitch = 45;
 		if(pitch <= -35) pitch = -35;
 	}

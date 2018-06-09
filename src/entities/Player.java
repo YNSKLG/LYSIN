@@ -5,12 +5,11 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 import models.TexturedModel;
-import net.java.games.input.Component;
+/*import net.java.games.input.Component;
 import net.java.games.input.Controller;
-import net.java.games.input.ControllerEnvironment;
+import net.java.games.input.ControllerEnvironment;*/
 import renderEngine.DisplayManager;
-import terrains.Terrain;
-import toolbox.InputHandler;
+//import toolbox.InputHandler;
 
 public class Player extends Entity {
 	
@@ -24,7 +23,7 @@ public class Player extends Entity {
 	private float upwardsSpeed = 0;
 	
 	private boolean isInAir = false;
-	private boolean sprinting = false;
+	//private boolean sprinting = false;
 	
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
 			float scale) {
@@ -33,7 +32,7 @@ public class Player extends Entity {
 		
 	}
 	
-	public void move(Terrain terrain) {
+	public void move() {
 		checkInputs();
 		super.increaseRotation(0, currentTurnSpeed * DisplayManager.getFrameTimeSeconds(), 0);
 		float distance = currentSpeed * DisplayManager.getFrameTimeSeconds();
@@ -41,14 +40,8 @@ public class Player extends Entity {
 		float dz = (float) (distance * Math.cos(Math.toRadians(super.getRotY())));
 		super.increasePosition(dx, 0, dz);
 		upwardsSpeed += GRAVITY * DisplayManager.getFrameTimeSeconds();
-		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeSeconds(), 0);
-		float terrainHeight = terrain.getHeightOfTerrain(super.getPosition().x, super.getPosition().z);
-		if(super.getPosition().y<terrainHeight) {
-			upwardsSpeed = 0;
-			isInAir = false;
-			super.getPosition().y = terrainHeight;
-		}
-		
+		super.increasePosition(0, upwardsSpeed * DisplayManager.getFrameTimeSeconds(), 0);		
+		if(this.getPosition().y < 0) this.setPosition(new Vector3f(this.getPosition().x, 0, this.getPosition().z));
 	}
 	
 	public boolean isAtLocation(Vector3f location, float radius) {

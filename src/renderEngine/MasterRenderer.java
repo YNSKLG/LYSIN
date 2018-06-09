@@ -17,8 +17,6 @@ import models.TexturedModel;
 import shaders.StaticShader;
 import shaders.TerrainShader;
 import shadows.ShadowMapMasterRenderer;
-import skybox.SkyboxRenderer;
-import terrains.Terrain;
 
 public class MasterRenderer {
 	
@@ -35,20 +33,15 @@ public class MasterRenderer {
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;
 	
-	private TerrainRenderer terrainRenderer;
 	private TerrainShader terrainShader = new TerrainShader();
 	
 	private Map<TexturedModel,List<Entity>> entities = new HashMap<TexturedModel,List<Entity>>();
-	private List<Terrain> terrains = new ArrayList<Terrain>();
 	
-	private SkyboxRenderer skyboxRenderer;
 	private ShadowMapMasterRenderer shadowMapRenderer;
 	
 	public MasterRenderer(Loader loader, Camera camera) {
 		createProjectionMatrix();
 		renderer = new EntityRenderer(shader, projectionMatrix);
-		terrainRenderer = new TerrainRenderer(terrainShader, projectionMatrix);
-		skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
 		this.shadowMapRenderer = new ShadowMapMasterRenderer(camera);
 	}
 	
@@ -69,21 +62,9 @@ public class MasterRenderer {
 		shader.loadViewMatrix(camera);
 		renderer.render(entities);
 		shader.stop();
-		terrainShader.start();
-		terrainShader.loadSkyColor(RED, GREEN, BLUE);
-		terrainShader.loadLights(lights);
-		terrainShader.loadViewMatrix(camera);
-		terrainRenderer.render(terrains, shadowMapRenderer.getToShadowMapSpaceMatrix());
-		terrainShader.stop();
-		skyboxRenderer.render(camera, RED, GREEN, BLUE);
-		terrains.clear();
 		entities.clear();
 	}
-	
-	public void processTerrain(Terrain terrain) {
-		terrains.add(terrain);
-	}
-	
+		
 	public void processEntity(Entity entity) {
 		TexturedModel entityModel = entity.getModel();
 		List<Entity> batch = entities.get(entityModel);
