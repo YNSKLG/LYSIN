@@ -15,8 +15,8 @@ public class Player extends Entity {
 	
 	private static final float RUN_SPEED = 10;
 	private static final float SPRINT_SPEED = 25;
-	private static final float GRAVITY = -25;
-	private static final float JUMP_POWER = 11;
+	private static final float GRAVITY = -15;
+	private static final float JUMP_POWER = 5;
 
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
@@ -54,27 +54,19 @@ public class Player extends Entity {
 	
 	private void jump() {
 		if(!isInAir) {
-		this.upwardsSpeed = JUMP_POWER;	
-		isInAir = true;
+			this.upwardsSpeed = JUMP_POWER;	
+			isInAir = true;
 		}
 	}
 	
 	private void checkInputs() {
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			this.currentSpeed = RUN_SPEED;
-			if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-				this.currentSpeed = SPRINT_SPEED;
-			}
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
-			this.currentSpeed = -RUN_SPEED;
-		} else {
-			this.currentSpeed = 0;
-		}
-		
+				
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			increasePosition(0.25f, 0, 0);
+			increasePosition(0.05f, 0, 0);
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			increasePosition(-0.05f, 0, 0);
 		}
-		
+
 		/*if(!Mouse.isButtonDown(1)) {
 			this.currentTurnSpeed = -(Mouse.getDX() * 25);
 		} else {
@@ -83,6 +75,7 @@ public class Player extends Entity {
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			jump();
+			isInAir = false;
 		}
 		
 		/*Controller joystick = null;

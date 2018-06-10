@@ -5,7 +5,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Camera {
 	
-	private float GROUND_DISTANCE = 0;
+	private float GROUND_DISTANCE = 1.5f;
 	
 	public static float distanceFromPlayer = 3;
 	private static float angleAroundPlayer = 0;
@@ -51,7 +51,7 @@ public class Camera {
 		float theta = player.getRotY() + angleAroundPlayer;
 		float offsetX = (float) (horizDistance * Math.sin(Math.toRadians(theta)));
 		float offsetZ = (float) (horizDistance * Math.cos(Math.toRadians(theta)));
-		position.x = player.getPosition().x - offsetX;
+		position.x = player.getPosition().x - offsetX - 2;
 		position.z = player.getPosition().z - offsetZ;
 		position.y = player.getPosition().y + verticDistance + GROUND_DISTANCE;
 		if(pitch >= 45) pitch = 45;

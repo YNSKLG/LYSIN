@@ -34,16 +34,16 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		List<Entity> entities = new ArrayList<Entity>();
 		
-		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/fox");
+		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/char1");
 		RawModel rawPlayer = loader.loadToVAO(dataPlayer.getVertices(), dataPlayer.getTextureCoords(),
 				dataPlayer.getNormals(), dataPlayer.getIndices());
-		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/uvFox")));
+		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/char1")));
 		ModelTexture texturePlayer = playermodel.getTexture();
 		texturePlayer.setReflectivity(0);
 		texturePlayer.setShineDamper(0);
 		texturePlayer.setHasTransparency(true);
 		
-		Player player = new Player(playermodel, new Vector3f(0,0.5f,0),0,0,0,3);
+		Player player = new Player(playermodel, new Vector3f(0,0,-0.1f),0,0,0,0.3f);
 		Camera camera = new Camera(player);
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
@@ -78,9 +78,16 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Generating Entities...");
 		
-		Entity entityBackground = new Entity(background, new Vector3f(0,0,0),0,180,0,3);
+		Entity entityBackground0 = new Entity(background, new Vector3f(0,0.8f,0),0,180,0,3);
+		Entity entityBackground1 = new Entity(background, new Vector3f(-9.6f,0.8f,0),0,180,0,3);
+		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,0.8f,0),0,180,0,3);
+		Entity entityBackground3 = new Entity(background, new Vector3f(-28.8f,0.8f,0),0,180,0,3);
 		
-		entities.add(entityBackground);
+		entities.add(entityBackground0);
+		entities.add(entityBackground1);
+		entities.add(entityBackground2);
+		entities.add(entityBackground3);
+		
 		
 		
 		// ***** LIGHTS *****
@@ -110,7 +117,10 @@ public class MainGameLoop {
 			
 				renderer.renderShadowMap(entities, sun);
 			
-				renderer.processEntity(entityBackground);
+				renderer.processEntity(entityBackground0);
+				renderer.processEntity(entityBackground1);
+				renderer.processEntity(entityBackground2);
+				renderer.processEntity(entityBackground3);
 			
 				renderer.processEntity(player);
 			
