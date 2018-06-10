@@ -5,9 +5,9 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Camera {
 	
-	private float GROUND_DISTANCE = 9;
+	private float GROUND_DISTANCE = 0;
 	
-	public static float distanceFromPlayer = 20;
+	public static float distanceFromPlayer = 3;
 	private static float angleAroundPlayer = 0;
 
 	private Vector3f position = new Vector3f(0,1.5f,0);
@@ -22,9 +22,9 @@ public class Camera {
 	}
 	
 	public void move() {
-		calculateZoom();
-		calculatePitch();
-		calculateAngleAroundPlayer();
+		//calculateZoom();
+		//calculatePitch();
+		//calculateAngleAroundPlayer();
 		float horizontalDistance = calculateHorizontalDistance();
 		float verticalDistance = calculateVerticalDistance();
 		calculateCameraPosition(horizontalDistance, verticalDistance);
@@ -66,24 +66,24 @@ public class Camera {
 		return (float) (distanceFromPlayer * Math.sin(Math.toRadians(pitch)));
 	}
 	
-	private void calculateZoom() {
+	/*private void calculateZoom() {
 		float zoomLevel = Mouse.getDWheel() * 0.025f;
 		distanceFromPlayer -= zoomLevel;
 		if(distanceFromPlayer <= 6) distanceFromPlayer = 6;
 		if(distanceFromPlayer >= 30) distanceFromPlayer = 30;
-	}
+	}*/
 	
-	private void calculatePitch() {
+	/*private void calculatePitch() {
 		float pitchChange = Mouse.getDY() * 0.1f;
 		pitch += pitchChange;						//change += to -= to invert Mouse-Y
-	}
+	}/*
 	
-	private void calculateAngleAroundPlayer() {
+	/*private void calculateAngleAroundPlayer() {
 		if(Mouse.isButtonDown(1)) {
 			float angleChange = Mouse.getDX() * 0.3f;
 			angleAroundPlayer -= angleChange;
 		}
-	}
+	}*/
 	
 	public static void setAngleAroundPlayer(int value) {
 		angleAroundPlayer = value;

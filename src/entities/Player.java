@@ -75,11 +75,11 @@ public class Player extends Entity {
 			increasePosition(0.25f, 0, 0);
 		}
 		
-		if(!Mouse.isButtonDown(1)) {
+		/*if(!Mouse.isButtonDown(1)) {
 			this.currentTurnSpeed = -(Mouse.getDX() * 25);
 		} else {
 			this.currentTurnSpeed = 0;
-		}
+		}*/
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 			jump();

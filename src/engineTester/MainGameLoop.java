@@ -43,7 +43,7 @@ public class MainGameLoop {
 		texturePlayer.setShineDamper(0);
 		texturePlayer.setHasTransparency(true);
 		
-		Player player = new Player(playermodel, new Vector3f(400,0.5f,-400),0,0,0,3);
+		Player player = new Player(playermodel, new Vector3f(0,0.5f,0),0,0,0,3);
 		Camera camera = new Camera(player);
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
@@ -55,13 +55,13 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Loading Models...");
 		
-		/*ModelData dataTree = OBJFileLoader.loadOBJ("structure/lamp");
-		RawModel modelTree = loader.loadToVAO(dataTree.getVertices(), dataTree.getTextureCoords(), 
-				dataTree.getNormals(), dataTree.getIndices());
-		TexturedModel tree = new TexturedModel(modelTree, new ModelTexture(loader.loadTexture("structure/uvLamp")));
-		ModelTexture textureTree = tree.getTexture();
-		textureTree.setShineDamper(0);
-		textureTree.setReflectivity(0);*/
+		ModelData dataBackground = OBJFileLoader.loadOBJ("structure/background");
+		RawModel modelBackground = loader.loadToVAO(dataBackground.getVertices(), dataBackground.getTextureCoords(), 
+				dataBackground.getNormals(), dataBackground.getIndices());
+		TexturedModel background = new TexturedModel(modelBackground, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg1")));
+		ModelTexture textureBackground = background.getTexture();
+		textureBackground.setShineDamper(0);
+		textureBackground.setReflectivity(0);
 		
 						
 		// ***** GUI *****
@@ -78,10 +78,9 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Generating Entities...");
 		
-		/*Entity entityTree = new Entity(tree, new Vector3f(382, 
-				terrain.getHeightOfTerrain(382, -336) + 0.1f,-336),0,140,0,3);*/
+		Entity entityBackground = new Entity(background, new Vector3f(0,0,0),0,180,0,3);
 		
-		//entities.add(entityTree);
+		entities.add(entityBackground);
 		
 		
 		// ***** LIGHTS *****
@@ -111,7 +110,7 @@ public class MainGameLoop {
 			
 				renderer.renderShadowMap(entities, sun);
 			
-				//renderer.processEntity(entityTree);
+				renderer.processEntity(entityBackground);
 			
 				renderer.processEntity(player);
 			
