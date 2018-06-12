@@ -75,10 +75,10 @@ public class Player extends Entity {
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			jump();
-			
-			if(this.getPosition().y == 0) {
+		/*	
+			if(etwas unter dem Player) {
 				isInAir = false;
-			}
+			}*/
 		}
 		
 		
