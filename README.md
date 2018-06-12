@@ -4,7 +4,7 @@ Jump and Run
 
 Ziel: an das Ende kommen / kein Ziel / Checkpoints mit statistik, Highscore / Zeitlimit (Timer) / Level (Sterne, Bewertungen, Tutorial)
 
-Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP(100,) /(geschwinigkeit/ sprunghöhe/weite                                                         nach größe) / standart Steuerung : W oder Leertaste (springen), A (links laufen), D(rechts laufen), (S (ducken))
+Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP(100,), geschwindigkeit, sprunghöhe/weite                                                         nach größe) / standart Steuerung : W oder Leertaste (springen), A (links laufen), D(rechts laufen), (S (ducken))
 
 Buffs/pillenn: Pillen werden aus verschiedenen Chemikalien zusammengebaut / schneller Laufen(Blau, *2) / höher Springen(Gelb, +2m) /  HP auffüllen(Rot, +25)
 
