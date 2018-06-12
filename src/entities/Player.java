@@ -73,10 +73,11 @@ public class Player extends Entity {
 			this.currentTurnSpeed = 0;
 		}*/
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			jump();
 			isInAir = false;
 		}
+		
 		
 		/*Controller joystick = null;
 		
