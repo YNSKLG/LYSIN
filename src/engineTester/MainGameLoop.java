@@ -34,16 +34,16 @@ public class MainGameLoop {
 		Loader loader = new Loader();
 		List<Entity> entities = new ArrayList<Entity>();
 		
-		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/char2");
+		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/char1");
 		RawModel rawPlayer = loader.loadToVAO(dataPlayer.getVertices(), dataPlayer.getTextureCoords(),
 				dataPlayer.getNormals(), dataPlayer.getIndices());
-		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/char2")));
+		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/char1")));
 		ModelTexture texturePlayer = playermodel.getTexture();
 		texturePlayer.setReflectivity(0);
 		texturePlayer.setShineDamper(0);
 		texturePlayer.setHasTransparency(true);
 		
-		Player player = new Player(playermodel, new Vector3f(0,0,-0.1f),0,0,0,1f);
+		Player player = new Player(playermodel, new Vector3f(0,0,-0.1f),0,0,0,0.3f);
 		Camera camera = new Camera(player);
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
