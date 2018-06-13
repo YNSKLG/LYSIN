@@ -12,6 +12,7 @@ import toolbox.InputHandler;
 
 public class Player extends Entity {
 	
+
 	private static final float WALK_SPEED = 0.05f;
 	private static final float GRAVITY = -9.80665f;
 	private static final float JUMP_POWER = 4;
@@ -56,6 +57,7 @@ public class Player extends Entity {
 	
 	private void checkInputs() {
 				
+
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			increasePosition(WALK_SPEED, 0, 0);
 			setRotY(180);
@@ -66,8 +68,9 @@ public class Player extends Entity {
 			Camera.setAngleAroundPlayer(0);
 		}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			jump();
+
 			if(this.getPosition().y == 0) isInAir = false;
 		}
 		
