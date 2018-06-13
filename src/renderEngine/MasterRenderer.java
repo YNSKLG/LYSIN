@@ -15,7 +15,6 @@ import entities.Entity;
 import entities.Light;
 import models.TexturedModel;
 import shaders.StaticShader;
-import shaders.TerrainShader;
 import shadows.ShadowMapMasterRenderer;
 
 public class MasterRenderer {
@@ -32,9 +31,7 @@ public class MasterRenderer {
 	
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;
-	
-	private TerrainShader terrainShader = new TerrainShader();
-	
+		
 	private Map<TexturedModel,List<Entity>> entities = new HashMap<TexturedModel,List<Entity>>();
 	
 	private ShadowMapMasterRenderer shadowMapRenderer;
@@ -92,7 +89,6 @@ public class MasterRenderer {
 	public void cleanUp() {
 		
 		shader.cleanUp();
-		terrainShader.cleanUp();
 		shadowMapRenderer.cleanUp();
 		
 	}
