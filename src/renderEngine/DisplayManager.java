@@ -118,6 +118,5 @@ public class DisplayManager {
 	
 	public static boolean isFullscreen() {
 		return DisplayManager.fullscreen;
-	}
-	
+	}	
 }

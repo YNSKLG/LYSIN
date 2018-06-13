@@ -21,9 +21,7 @@ public class InputHandler {
 			if(Keyboard.getEventKeyState()) {
 				
 				switch(Keyboard.getEventKey()) {
-					case 1: 	if(!paused) Mouse.setGrabbed(false);		//ESC		
-								else Mouse.setGrabbed(true);
-								pauseGame();
+					case 1: 	pauseGame();								//ESC
 								break;
 					case 46: 	Camera.setAngleAroundPlayer(0);				//C
 								break;
@@ -49,8 +47,10 @@ public class InputHandler {
 	public static void pauseGame() {
 		if(!paused) {
 			paused = true;
+			Mouse.setGrabbed(false);
 		} else {
 			paused = false;
+			Mouse.setGrabbed(true);
 		}
 	}
 

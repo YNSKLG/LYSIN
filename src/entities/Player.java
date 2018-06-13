@@ -43,7 +43,7 @@ public class Player extends Entity {
 		float distance = (float) Math.sqrt(Math.pow(location.x - this.getPosition().x, 2)+
 				Math.pow(location.y - this.getPosition().y, 2)+Math.pow(location.z - 
 				this.getPosition().z, 2));
-		if(distance<=radius*3) return true;
+		if(distance<=radius) return true;
 		else return false;
 	}
 	
@@ -58,15 +58,17 @@ public class Player extends Entity {
 				
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			increasePosition(WALK_SPEED, 0, 0);
+			setRotY(180);
+			Camera.setAngleAroundPlayer(180);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			increasePosition(-WALK_SPEED, 0, 0);
+			setRotY(0);;
+			Camera.setAngleAroundPlayer(0);
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W)) {
 			jump();
-			if(this.getPosition().y==0) {
-				isInAir = false;
-			}
+			if(this.getPosition().y == 0) isInAir = false;
 		}
 		
 		Controller joystick = null;
@@ -82,24 +84,25 @@ public class Player extends Entity {
 		for(Component c : joystick.getComponents()) {
 			
 			if(c.getName().equals("x")) {
-				currentSpeed = -(c.getPollData()*WALK_SPEED);
+				increasePosition(-WALK_SPEED*c.getPollData(), 0, 0);
+				if(c.getPollData() > 0) {
+					setRotY(0);
+					Camera.setAngleAroundPlayer(0);
+				} else if(c.getPollData() < 0) {
+					setRotY(180);
+					Camera.setAngleAroundPlayer(180);
+				}
 			}
 
-			if(c.getName().equals("Top") && c.getPollData() == 1.0) {
+			if(c.getName().equals("Thumb 2") && c.getPollData() == 1.0) {
 				jump();
+				if(this.getPosition().y == 0) isInAir = false;
 			} 
 
 			if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
 				InputHandler.pauseGame();
 			}
-
-			if(c.getName().equals("Base 3") && c.getPollData() == 1.0) {
-				if(!DisplayManager.isFullscreen()) {
-					DisplayManager.setFullscreen(true);
-				} else {
-					DisplayManager.setFullscreen(false);
-				}
-			}
 		}
 	}
+	
 }
