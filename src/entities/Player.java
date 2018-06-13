@@ -61,9 +61,9 @@ public class Player extends Entity {
 	
 	private void checkInputs() {
 				
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			increasePosition(0.05f, 0, 0);
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			increasePosition(-0.05f, 0, 0);
 		}
 
@@ -73,8 +73,9 @@ public class Player extends Entity {
 			this.currentTurnSpeed = 0;
 		}*/
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			jump();
+			isInAir = false;
 		/*	
 			if(etwas unter dem Player) {
 				isInAir = false;
