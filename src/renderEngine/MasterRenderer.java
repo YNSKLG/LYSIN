@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL13;
 import org.lwjgl.util.vector.Matrix4f;
 
 import entities.Camera;
@@ -15,7 +14,6 @@ import entities.Entity;
 import entities.Light;
 import models.TexturedModel;
 import shaders.StaticShader;
-import shadows.ShadowMapMasterRenderer;
 
 public class MasterRenderer {
 	
@@ -34,12 +32,9 @@ public class MasterRenderer {
 		
 	private Map<TexturedModel,List<Entity>> entities = new HashMap<TexturedModel,List<Entity>>();
 	
-	private ShadowMapMasterRenderer shadowMapRenderer;
-	
 	public MasterRenderer(Loader loader, Camera camera) {
 		createProjectionMatrix();
 		renderer = new EntityRenderer(shader, projectionMatrix);
-		this.shadowMapRenderer = new ShadowMapMasterRenderer(camera);
 	}
 	
 	public static void enableCulling() {
@@ -78,18 +73,12 @@ public class MasterRenderer {
 		for(Entity entity:entityList) {
 			processEntity(entity);
 		}
-		shadowMapRenderer.render(entities, sun);
 		entities.clear();
-	}
-	
-	public int getShadowMapTexture() {
-		return shadowMapRenderer.getShadowMap();
 	}
 	
 	public void cleanUp() {
 		
 		shader.cleanUp();
-		shadowMapRenderer.cleanUp();
 		
 	}
 
@@ -98,8 +87,6 @@ public class MasterRenderer {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glClearColor(RED, GREEN, BLUE, 1);	//Sky Color
-		GL13.glActiveTexture(GL13.GL_TEXTURE5);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, getShadowMapTexture());
 		
 	}
 	

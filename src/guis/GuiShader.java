@@ -1,5 +1,3 @@
-
-
 package guis;
 
 import org.lwjgl.util.vector.Matrix4f;
@@ -30,9 +28,4 @@ public class GuiShader extends ShaderProgram{
 	protected void bindAttributes() {
 		super.bindAttribute(0, "position");
 	}
-	
-	
-	
-
 }
-

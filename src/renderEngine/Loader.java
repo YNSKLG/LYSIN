@@ -50,9 +50,9 @@ public class Loader {
 			
 			if(fileName==null) texture = TextureLoader.getTexture("PNG", new FileInputStream("res/textures/notex/notex.png"));
 			else texture = TextureLoader.getTexture("PNG", new FileInputStream("res/textures/"+fileName+".png"));
-		} catch (FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		int textureID = texture.getTextureID();
@@ -93,10 +93,8 @@ public class Loader {
 		
 	}
 	
-	private void unbindVAO() {
-		
-		GL30.glBindVertexArray(0);
-		
+	private void unbindVAO() {		
+		GL30.glBindVertexArray(0);		
 	}
 	
 	private void bindIndicesBuffer(int[] indices) {
