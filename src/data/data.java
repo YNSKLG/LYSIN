@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import entities.Player;
+
 public class data {
 
 	private static final String RES_LOC = "res/models/";
@@ -38,7 +40,7 @@ public class data {
 					player.setAvatar(Integer.parseInt(currentLine[1]));
 				}else if (line.startsWith("xp")) {
 					String[] currentLine = line.split("");
-					player.setXP(Integer.parseInt(currentLine[1]));
+					player.setXp(Integer.parseInt(currentLine[1]));
 				}
 				
 			}

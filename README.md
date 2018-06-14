@@ -2,16 +2,19 @@
 
 Jump and Run
 
-Ziel: an das Ende kommen / kein Ziel / Checkpoints (statistik / Highscore) / Zeitlimit (Timer) / (Level (Sterne / Bewertungen))
+Ziel: an das Ende kommen / kein Ziel / Checkpoints mit statistik, Highscore / Zeitlimit (Timer) / Level (Sterne, Bewertungen, Tutorial)
 
-Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP /(geschwinigkeit/ sprunghÃ¶he/weite                                                         nach grÃ¶ÃŸe)
+Figur: Laufen / Sprinen / Leben / Level, Erfahrung / verschiedene (individuelle) Charaktere / HP(100,), geschwindigkeit, sprunghöhe/weite                                                         nach größe) / standart Steuerung : W oder Leertaste (springen), A (links laufen), D(rechts laufen), (S (ducken))
 
-Items: schneller Laufen / hÃ¶her Springen / mehr (extra) Leben / HP auffÃ¼llen
+Buffs/pillenn: Pillen werden aus verschiedenen Chemikalien zusammengebaut / schneller Laufen(Blau, *2) / höher Springen(Gelb, +2m) /  HP auffüllen(Rot, +25)
 
-Hindernisse: LÃ¶cher / Fallen / Bouncepad / bewegende Plattformen / RÃ¤tsel 
+Hindernisse: Löcher / Fallen (laser, stacheln, raketen)/ Bouncepad / bewegende Plattformen / Rätsel / Fallschaden(-10 pro 1m nach 4m fallhöhe (bei 5m -10,nach 6m-20,...(bei gelber pille aufpassen!))) / Level reset also vom letzten checkpoint neu beginnen
 
-Neg. Items: blindheit / langsamer / nicht so hoch springen 
+Debuffs: blindheit (schwarz) / lähmung (langsamer, nicht so hoch springen; Grau  / Schaden (Dunkelrot)
 
 Welt: Story / Aussehen
 
-WÃ¤hrung ---> Upgrades von Charaktern / Einstellungen (Tastatur / Joystick)
+Währung = Weiße tabletten ---> Upgrades von Charaktern / Einstellungen (Tastaturbelegung / Joystick)
+
+Checkpionts immer an Türen in der Fabrik, danach nächster raum mit eigenen Egenschaften:
+Veringerte Gravitation; umgekehrte Gravitation; thema (lava, etc.);
