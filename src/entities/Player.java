@@ -8,7 +8,6 @@ import net.java.games.input.Component;
 import net.java.games.input.Controller;
 import net.java.games.input.ControllerEnvironment;
 import renderEngine.DisplayManager;
-import toolbox.InputHandler;
 
 public class Player extends Entity {
 	
@@ -24,6 +23,8 @@ public class Player extends Entity {
 	private String name;
 	
 	private boolean isInAir = false;
+	
+	public static boolean r = true;
 	
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
 			float scale) {
@@ -62,10 +63,12 @@ public class Player extends Entity {
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			increasePosition(WALK_SPEED, 0, 0);
 			setRotY(180);
+			r = false;
 			Camera.setAngleAroundPlayer(180);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			increasePosition(-WALK_SPEED, 0, 0);
-			setRotY(0);;
+			setRotY(0);
+			r=true;
 			Camera.setAngleAroundPlayer(0);
 		}
 		
