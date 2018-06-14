@@ -21,6 +21,9 @@ public class Player extends Entity {
 	private float currentTurnSpeed = 0;
 	private float upwardsSpeed = 0;
 	
+	private int highscore, meterRun, timePlayed, avatar, xp, hp, star, death, coin; 
+	private String name;
+	
 	private boolean isInAir = false;
 	
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
@@ -105,6 +108,97 @@ public class Player extends Entity {
 					InputHandler.pauseGame();
 				}
 			}
+
+
+			if(c.getName().equals("Thumb 2") && c.getPollData() == 1.0) {
+				jump();
+				if(this.getPosition().y == 0) isInAir = false;
+			} 
+
+			if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
+				InputHandler.pauseGame();
+			}
 		}
 	}
+	
+	public int getHighscore() {
+		return highscore;
+	}
+
+	public void setHighscore(int highscore) {
+		this.highscore = highscore;
+	}
+
+	public int getMeterRun() {
+		return meterRun;
+	}
+
+	public void setMeterRun(int meterRun) {
+		this.meterRun = meterRun;
+	}
+
+	public int getTimePlayed() {
+		return timePlayed;
+	}
+
+	public void setTimePlayed(int timePlayed) {
+		this.timePlayed = timePlayed;
+	}
+
+	public int getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(int avatar) {
+		this.avatar = avatar;
+	}
+
+	public int getXp() {
+		return xp;
+	}
+
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
+	}
+
+	public int getDeath() {
+		return death;
+	}
+
+	public void setDeath(int death) {
+		this.death = death;
+	}
+
+	public int getCoin() {
+		return coin;
+	}
+
+	public void setCoin(int coin) {
+		this.coin = coin;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
