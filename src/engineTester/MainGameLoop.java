@@ -32,6 +32,7 @@ public class MainGameLoop {
 		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
+		
 		List<Entity> entities = new ArrayList<Entity>();
 		
 		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/char1");
@@ -39,12 +40,11 @@ public class MainGameLoop {
 				dataPlayer.getNormals(), dataPlayer.getIndices());
 		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/char1")));
 		ModelTexture texturePlayer = playermodel.getTexture();
-		texturePlayer.setReflectivity(0);
-		texturePlayer.setShineDamper(0);
 		texturePlayer.setHasTransparency(true);
 		
 		Player player = new Player(playermodel, new Vector3f(0,0,-0.1f),0,0,0,0.3f);
 		Camera camera = new Camera(player);
+		
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
 		GuiRenderer guiRenderer = new GuiRenderer(loader);
 		
@@ -59,9 +59,6 @@ public class MainGameLoop {
 		RawModel modelBackground = loader.loadToVAO(dataBackground.getVertices(), dataBackground.getTextureCoords(), 
 				dataBackground.getNormals(), dataBackground.getIndices());
 		TexturedModel background = new TexturedModel(modelBackground, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg1")));
-		ModelTexture textureBackground = background.getTexture();
-		textureBackground.setShineDamper(0);
-		textureBackground.setReflectivity(0);
 		
 						
 		// ***** GUI *****
@@ -87,17 +84,15 @@ public class MainGameLoop {
 		entities.add(entityBackground1);
 		entities.add(entityBackground2);
 		entities.add(entityBackground3);
-		
-		
+				
 		
 		// ***** LIGHTS *****
+
+		List<Light> lights = new ArrayList<Light>();
 		
 		Light sun = new Light(new Vector3f(300,500,0), new Vector3f(1,1,1));
-		Light lamp = new Light(new Vector3f(382, 
-				10 + 6.1f,-336), new Vector3f(1,1,1));
-		List<Light> lights = new ArrayList<Light>();
+		
 		lights.add(sun);
-		lights.add(lamp);
 		
 				
 		// ***** GAME LOOP *****
@@ -109,24 +104,18 @@ public class MainGameLoop {
 			InputHandler.testKeyboard();
 				
 			if(!InputHandler.paused) {
-			
+				
 				camera.move();
 				player.move();
 			
 				//---RENDERER---
 			
-				renderer.renderShadowMap(entities, sun);
-			
-				renderer.processEntity(entityBackground0);
-				renderer.processEntity(entityBackground1);
-				renderer.processEntity(entityBackground2);
-				renderer.processEntity(entityBackground3);
-			
-				renderer.processEntity(player);
+				for(Entity e : entities) {
+					renderer.processEntity(e);
+				}
 			
 				renderer.render(lights, camera);
 						
-
 			} else {
 			
 				guiRenderer.render(pauseGuis);
@@ -134,7 +123,6 @@ public class MainGameLoop {
 			}
 				
 			DisplayManager.updateDisplay();
-			
 		}
 		
 		
