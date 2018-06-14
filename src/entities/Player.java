@@ -3,6 +3,7 @@ package entities;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
+import engineTester.MainGameLoop;
 import models.TexturedModel;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
@@ -82,18 +83,29 @@ public class Player extends Entity {
 			}
 		}
 		
-		joystick.poll();
-		
-		for(Component c : joystick.getComponents()) {
+		if(joystick != null) {
+			joystick.poll();
 			
-			if(c.getName().equals("x")) {
-				increasePosition(-WALK_SPEED*c.getPollData(), 0, 0);
-				if(c.getPollData() > 0) {
-					setRotY(0);
-					Camera.setAngleAroundPlayer(0);
-				} else if(c.getPollData() < 0) {
-					setRotY(180);
-					Camera.setAngleAroundPlayer(180);
+			for(Component c : joystick.getComponents()) {
+				
+				if(c.getName().equals("x")) {
+					increasePosition(-WALK_SPEED*c.getPollData(), 0, 0);
+					if(c.getPollData() > 0) {
+						setRotY(0);
+						Camera.setAngleAroundPlayer(0);
+					} else if(c.getPollData() < 0) {
+						setRotY(180);
+						Camera.setAngleAroundPlayer(180);
+					}
+				}
+	
+				if(c.getName().equals("Thumb 2") && c.getPollData() == 1.0) {
+					jump();
+					if(this.getPosition().y == 0) isInAir = false;
+				} 
+	
+				if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
+					InputHandler.pauseGame();
 				}
 			}
 
