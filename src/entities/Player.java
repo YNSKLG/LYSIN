@@ -3,7 +3,6 @@ package entities;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
-import engineTester.MainGameLoop;
 import models.TexturedModel;
 import net.java.games.input.Component;
 import net.java.games.input.Controller;
@@ -104,19 +103,9 @@ public class Player extends Entity {
 					if(this.getPosition().y == 0) isInAir = false;
 				} 
 	
-				if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
+				/*if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
 					InputHandler.pauseGame();
-				}
-			}
-
-
-			if(c.getName().equals("Thumb 2") && c.getPollData() == 1.0) {
-				jump();
-				if(this.getPosition().y == 0) isInAir = false;
-			} 
-
-			if(c.getName().equals("Base 4") && c.getPollData() == 1.0) {
-				InputHandler.pauseGame();
+				}*/
 			}
 		}
 	}
