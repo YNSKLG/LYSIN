@@ -60,12 +60,12 @@ public class Player extends Entity {
 	
 	private void checkInputs() {
 				
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			increasePosition(WALK_SPEED, 0, 0);
 			setRotY(180);
 			r = false;
 			Camera.setAngleAroundPlayer(180);
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			increasePosition(-WALK_SPEED, 0, 0);
 			setRotY(0);
 			r=true;
