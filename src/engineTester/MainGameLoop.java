@@ -60,11 +60,6 @@ public class MainGameLoop {
 				dataBackground.getNormals(), dataBackground.getIndices());
 		TexturedModel background = new TexturedModel(modelBackground, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg1")));
 		
-		ModelData dataBackground1 = OBJFileLoader.loadOBJ("char/char2");
-		RawModel modelBackground1 = loader.loadToVAO(dataBackground.getVertices(), dataBackground.getTextureCoords(), 
-				dataBackground.getNormals(), dataBackground.getIndices());
-		TexturedModel background1 = new TexturedModel(modelBackground, new ModelTexture(loader.loadTexture("char/char2")));
-		
 						
 		// ***** GUI *****
 		
@@ -84,13 +79,11 @@ public class MainGameLoop {
 		Entity entityBackground1 = new Entity(background, new Vector3f(-9.6f,0.8f,0),0,180,0,3);
 		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,0.8f,0),0,180,0,3);
 		Entity entityBackground3 = new Entity(background, new Vector3f(-28.8f,0.8f,0),0,180,0,3);
-		Entity platform0 = new Entity(background1, new Vector3f(0,0,-0.1f),0,0,0,0.3f);
 		
 		entities.add(entityBackground0);
 		entities.add(entityBackground1);
 		entities.add(entityBackground2);
 		entities.add(entityBackground3);
-		entities.add(platform0);		
 		
 		// ***** LIGHTS *****
 
