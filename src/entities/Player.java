@@ -24,7 +24,7 @@ public class Player extends Entity {
 	
 	private boolean isInAir = false;
 	
-	public static boolean r = true;
+	public static boolean facesRight = true;
 	
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
 			float scale) {
@@ -63,12 +63,12 @@ public class Player extends Entity {
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
 			increasePosition(WALK_SPEED, 0, 0);
 			setRotY(180);
-			r = false;
+			facesRight = false;
 			Camera.setAngleAroundPlayer(180);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			increasePosition(-WALK_SPEED, 0, 0);
 			setRotY(0);
-			r=true;
+			facesRight=true;
 			Camera.setAngleAroundPlayer(0);
 		}
 		

@@ -12,6 +12,7 @@ import entities.Camera;
 import entities.Entity;
 import entities.Light;
 import entities.Player;
+import gameLogic.Border;
 import guis.GuiRenderer;
 import guis.GuiTexture;
 import models.RawModel;
@@ -49,7 +50,7 @@ public class MainGameLoop {
 		ModelTexture textureMabel = mabel.getTexture();
 		textureMabel.setHasTransparency(true);
 		
-		Player player = new Player(lysander, new Vector3f(0,0,-0.1f),0,0,0,0.4f);
+		Player player = new Player(mabel, new Vector3f(0,0,-0.1f),0,0,0,0.4f);
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
@@ -67,6 +68,11 @@ public class MainGameLoop {
 				dataBackground.getNormals(), dataBackground.getIndices());
 		TexturedModel background = new TexturedModel(modelBackground, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg1")));
 		
+		ModelData dataBackgroundf = OBJFileLoader.loadOBJ("structure/background");
+		RawModel modelBackgroundf = loader.loadToVAO(dataBackgroundf.getVertices(), dataBackgroundf.getTextureCoords(), 
+				dataBackgroundf.getNormals(), dataBackgroundf.getIndices());
+		TexturedModel backgroundf = new TexturedModel(modelBackgroundf, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg2")));
+		
 						
 		// ***** GUI *****
 		
@@ -82,10 +88,10 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Generating Entities...");
 		
-		Entity entityBackground0 = new Entity(background, new Vector3f(0,0.8f,0),0,180,0,3);
-		Entity entityBackground1 = new Entity(background, new Vector3f(-9.6f,0.8f,0),0,180,0,3);
-		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,0.8f,0),0,180,0,3);
-		Entity entityBackground3 = new Entity(background, new Vector3f(-28.8f,0.8f,0),0,180,0,3);
+		Entity entityBackground0 = new Entity(background, new Vector3f(0,1.75f,0),0,180,0,3);
+		Entity entityBackground1 = new Entity(backgroundf, new Vector3f(-9.6f,1.75f,0),0,180,0,3);
+		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,1.75f,0),0,180,0,3);
+		Entity entityBackground3 = new Entity(backgroundf, new Vector3f(-28.8f,1.75f,0),0,180,0,3);
 		
 		entities.add(entityBackground0);
 		entities.add(entityBackground1);
@@ -114,7 +120,10 @@ public class MainGameLoop {
 				
 				camera.move();
 				player.move();
-			
+				
+				Border.borderLeft(2.75f, player);
+				Border.borderRight(-27.75f, player);
+				
 				//---RENDERER---
 			
 				for(Entity e : entities) {
