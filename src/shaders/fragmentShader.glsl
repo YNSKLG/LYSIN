@@ -38,7 +38,7 @@ void main(void) {
 		totalSpecular = totalSpecular + (dampedFactor * reflectivity * lightColor[i]) / attFactor;
 	}
 	
-	totalDiffuse = max(totalDiffuse, 0.4);
+	totalDiffuse = max(totalDiffuse, 1.0);
 	
 	vec4 textureColor = texture(textureSampler, pass_textureCoords);
 	if(textureColor.a<0.5) {

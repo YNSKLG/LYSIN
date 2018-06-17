@@ -35,14 +35,21 @@ public class MainGameLoop {
 		
 		List<Entity> entities = new ArrayList<Entity>();
 		
-		ModelData dataPlayer = OBJFileLoader.loadOBJ("char/char1");
-		RawModel rawPlayer = loader.loadToVAO(dataPlayer.getVertices(), dataPlayer.getTextureCoords(),
-				dataPlayer.getNormals(), dataPlayer.getIndices());
-		TexturedModel playermodel = new TexturedModel(rawPlayer, new ModelTexture(loader.loadTexture("char/char1")));
-		ModelTexture texturePlayer = playermodel.getTexture();
-		texturePlayer.setHasTransparency(true);
+		ModelData dataLysander = OBJFileLoader.loadOBJ("char/lysander");
+		RawModel rawLysander = loader.loadToVAO(dataLysander.getVertices(), dataLysander.getTextureCoords(),
+				dataLysander.getNormals(), dataLysander.getIndices());
+		TexturedModel lysander = new TexturedModel(rawLysander, new ModelTexture(loader.loadTexture("char/lysander")));
+		ModelTexture textureLysander = lysander.getTexture();
+		textureLysander.setHasTransparency(true);
 		
-		Player player = new Player(playermodel, new Vector3f(0,0,-0.1f),0,0,0,0.3f);
+		ModelData dataMabel = OBJFileLoader.loadOBJ("char/mabel");
+		RawModel rawMabel = loader.loadToVAO(dataMabel.getVertices(), dataMabel.getTextureCoords(),
+				dataMabel.getNormals(), dataMabel.getIndices());
+		TexturedModel mabel = new TexturedModel(rawMabel, new ModelTexture(loader.loadTexture("char/mabel")));
+		ModelTexture textureMabel = mabel.getTexture();
+		textureMabel.setHasTransparency(true);
+		
+		Player player = new Player(lysander, new Vector3f(0,0,-0.1f),0,0,0,0.4f);
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
