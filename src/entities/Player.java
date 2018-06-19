@@ -18,6 +18,7 @@ public class Player extends Entity {
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 	private float upwardsSpeed = 0;
+	private float floor = 0;
 	
 	private int highscore, meterRun, timePlayed, avatar, xp, hp, star, death, coin; 
 	private String name;
@@ -54,7 +55,7 @@ public class Player extends Entity {
 	private void jump() {
 		if(!isInAir) {
 			this.upwardsSpeed = JUMP_POWER;	
-			//isInAir = true;
+			isInAir = true;
 		}
 	}
 	
@@ -74,7 +75,7 @@ public class Player extends Entity {
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			jump();
-			if(this.getPosition().y == 0) isInAir = false;
+			if(this.getPosition().y == floor) isInAir = false;
 		}
 		
 		Controller joystick = null;
@@ -111,6 +112,10 @@ public class Player extends Entity {
 				}*/
 			}
 		}
+	}
+	
+	public void setFloor(float floor) {
+		this.floor = floor;
 	}
 	
 	public int getHighscore() {

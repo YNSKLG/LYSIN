@@ -90,15 +90,19 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Generating Entities...");
 		
-		Entity entityBackground0 = new Entity(background, new Vector3f(0,1.75f,0),0,180,0,3);
-		Entity entityBackground1 = new Entity(backgroundf, new Vector3f(-9.6f,1.75f,0),0,180,0,3);
-		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,1.75f,0),0,180,0,3);
-		Entity entityBackground3 = new Entity(backgroundf, new Vector3f(-28.8f,1.75f,0),0,180,0,3);
+		Entity entityBackground0 = new Entity(background, new Vector3f(0,2f,0),0,180,0,3);
+		Entity entityBackground1 = new Entity(backgroundf, new Vector3f(-9.6f,2f,0),0,180,0,3);
+		Entity entityBackground2 = new Entity(background, new Vector3f(-19.2f,2f,0),0,180,0,3);
+		Entity entityBackground3 = new Entity(backgroundf, new Vector3f(-28.8f,2f,0),0,180,0,3);
+		
+		Entity entityMabel = new Entity(mabel, new Vector3f(-4.5f,0,-0.1f),0,0,0,0.6f);
 		
 		entities.add(entityBackground0);
 		entities.add(entityBackground1);
 		entities.add(entityBackground2);
 		entities.add(entityBackground3);
+		
+		entities.add(entityMabel);
 				
 		
 		// ***** LIGHTS *****
