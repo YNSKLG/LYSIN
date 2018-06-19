@@ -13,7 +13,7 @@ public class Player extends Entity {
 	
 	private static final float WALK_SPEED = 0.05f;
 	private static final float GRAVITY = -9.80665f;
-	private static final float JUMP_POWER = 4;
+	private static final float JUMP_POWER = 4.5f;
 
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
@@ -54,18 +54,18 @@ public class Player extends Entity {
 	private void jump() {
 		if(!isInAir) {
 			this.upwardsSpeed = JUMP_POWER;	
-			isInAir = true;
+			//isInAir = true;
 		}
 	}
 	
 	private void checkInputs() {
 				
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+		if(Keyboard.isKeyDown(Keyboard.KEY_A ) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			increasePosition(WALK_SPEED, 0, 0);
 			setRotY(180);
 			facesRight = false;
 			Camera.setAngleAroundPlayer(180);
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			increasePosition(-WALK_SPEED, 0, 0);
 			setRotY(0);
 			facesRight=true;

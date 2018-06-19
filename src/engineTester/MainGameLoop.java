@@ -13,8 +13,10 @@ import entities.Entity;
 import entities.Light;
 import entities.Player;
 import gameLogic.Border;
+import gameLogic.Platform;
 import guis.GuiRenderer;
 import guis.GuiTexture;
+import level.Level;
 import models.RawModel;
 import models.TexturedModel;
 import objConverter.ModelData;
@@ -50,7 +52,7 @@ public class MainGameLoop {
 		ModelTexture textureMabel = mabel.getTexture();
 		textureMabel.setHasTransparency(true);
 		
-		Player player = new Player(mabel, new Vector3f(0,0,-0.1f),0,0,0,0.4f);
+		Player player = new Player(lysander, new Vector3f(0,0,-0.1f),0,0,0,0.4f);
 		Camera camera = new Camera(player);
 		
 		MasterRenderer renderer = new MasterRenderer(loader, camera);
@@ -71,7 +73,7 @@ public class MainGameLoop {
 		ModelData dataBackgroundf = OBJFileLoader.loadOBJ("structure/background");
 		RawModel modelBackgroundf = loader.loadToVAO(dataBackgroundf.getVertices(), dataBackgroundf.getTextureCoords(), 
 				dataBackgroundf.getNormals(), dataBackgroundf.getIndices());
-		TexturedModel backgroundf = new TexturedModel(modelBackgroundf, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg2")));
+		TexturedModel backgroundf = new TexturedModel(modelBackgroundf, new ModelTexture(loader.loadTexture("enviroment/backgrounds/bg1")));
 		
 						
 		// ***** GUI *****
@@ -118,11 +120,15 @@ public class MainGameLoop {
 				
 			if(!InputHandler.paused) {
 				
+				System.out.println(player.getPosition().getX() + " " + player.getPosition().getY());
+				
 				camera.move();
 				player.move();
 				
 				Border.borderLeft(2.75f, player);
 				Border.borderRight(-27.75f, player);
+				
+				Level.loadLevel1(player);
 				
 				//---RENDERER---
 			
@@ -148,6 +154,7 @@ public class MainGameLoop {
 		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
-		
+				
 	}
+	
 }
