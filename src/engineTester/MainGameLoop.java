@@ -112,7 +112,6 @@ public class MainGameLoop {
 		System.out.println(LocalDateTime.now() + " *** Starting Game...");
 		
 		while(!Display.isCloseRequested()) {
-			
 			InputHandler.testKeyboard();
 				
 			if(!InputHandler.paused) {
@@ -136,6 +135,13 @@ public class MainGameLoop {
 			} else {
 			
 				guiRenderer.render(pauseGuis);
+				
+				if((Mouse.getX()>=176 || Mouse.getX()<=543) && (Mouse.getY()>=246 || Mouse.getY()<=285)) {
+					if(Mouse.isButtonDown(0)) {
+						InputHandler.paused = false;
+					}
+				}
+			
 				
 			}
 				
