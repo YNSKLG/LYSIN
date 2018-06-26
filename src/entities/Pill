@@ -1,0 +1,98 @@
+package entities;
+
+import java.util.Random;
+
+import org.lwjgl.util.vector.Vector2f;
+import org.lwjgl.util.vector.Vector3f;
+
+import engineTester.MainGameLoop;
+
+public class Pill {
+	
+	public static final int WHITE_SMALL = 0;
+	public static final int WHITE_MEDIUM = 1;
+	public static final int WHITE_LARGE = 2;
+	public static final int RED = 3;
+	public static final int YELLOW = 4;
+	public static final int BLUE = 5;
+
+	private Entity entity;
+	private Player player = MainGameLoop.getPlayer();
+	Random random = new Random();
+
+	private int color;
+	private int sideEffectProbability = random.nextInt(100);
+	
+	private long enabledTime;
+	
+	private boolean pickedUp = false;
+	private boolean enabled = false;
+	private boolean dumped = false;
+	
+	public Pill(int color, Vector2f pos, Entity entity) {
+		this.entity = entity;
+		this.color = color;
+		entity.setPosition(new Vector3f(pos.x,pos.y,-0.1f));
+		
+		System.out.println(sideEffectProbability);
+	}
+	
+	public void enable() {
+		switch(color) {
+			case 0: player.setXp(player.getXp()+10);
+					break;
+			case 1: player.setXp(player.getXp()+25);
+					break;
+			case 2: player.setXp(player.getXp()+50);
+					break;
+			case 3: player.setHp(player.getHp()+25);
+					break;
+			case 4: if(sideEffectProbability > 30) player.setJumpModifier(2);
+					else player.setJumpModifier(0);
+					break;
+			case 5: if(sideEffectProbability > 30) player.setSpeedModifier(2);
+					else player.setSpeedModifier(0.5f);
+					break;
+			default: break;
+		}
+		enabledTime = System.currentTimeMillis();
+		enabled = true;
+		dumped = true;
+	}
+	
+	public void disable() {
+		switch(color) {
+			case 4: player.setJumpModifier(0);
+					break;
+			case 5: player.setSpeedModifier(1);
+					break;
+			default: break;
+		}
+		enabled = false;
+	}
+	
+	public boolean isDumped() {
+		return dumped;
+	}
+	
+	public long getEnabledTime() {
+		return enabledTime;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	public boolean isPickedUp() {
+		return pickedUp;
+	}
+	
+	public void pickedUp() {
+		pickedUp = true;
+	}
+	
+	public Entity getEntity() {
+		return entity;
+	}
+	
+}
