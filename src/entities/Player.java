@@ -13,18 +13,22 @@ public class Player extends Entity {
 	
 	private static final float WALK_SPEED = 0.05f;
 	private static final float GRAVITY = -9.80665f;
-	private static final float JUMP_POWER = 4;
+	private static final float JUMP_POWER = 4.5f;
 
 	private float currentSpeed = 0;
 	private float currentTurnSpeed = 0;
 	private float upwardsSpeed = 0;
+	private float floor = 0;
+	
+	private float speedModifier = 1;
+	private float jumpModifier = 1;
 	
 	private int highscore, meterRun, timePlayed, avatar, xp, hp, star, death, coin; 
 	private String name;
 	
 	private boolean isInAir = false;
 	
-	public static boolean r = true;
+	public static boolean facesRight = true;
 	
 	public Player(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ,
 			float scale) {
@@ -53,28 +57,37 @@ public class Player extends Entity {
 	
 	private void jump() {
 		if(!isInAir) {
-			this.upwardsSpeed = JUMP_POWER;	
+			this.upwardsSpeed = JUMP_POWER+jumpModifier;	
 			isInAir = true;
 		}
 	}
 	
 	private void checkInputs() {
 				
+<<<<<<< HEAD
 		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			increasePosition(WALK_SPEED * speedModifier, 0, 0);
+=======
+		if(Keyboard.isKeyDown(Keyboard.KEY_A ) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			increasePosition(WALK_SPEED, 0, 0);
+>>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 			setRotY(180);
-			r = false;
+			facesRight = false;
 			Camera.setAngleAroundPlayer(180);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+<<<<<<< HEAD
+			increasePosition(-WALK_SPEED * speedModifier, 0, 0);
+=======
 			increasePosition(-WALK_SPEED, 0, 0);
+>>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 			setRotY(0);
-			r=true;
+			facesRight=true;
 			Camera.setAngleAroundPlayer(0);
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)||Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			jump();
-			if(this.getPosition().y == 0) isInAir = false;
+			if(this.getPosition().y == floor) isInAir = false;
 		}
 		
 		Controller joystick = null;
@@ -91,7 +104,7 @@ public class Player extends Entity {
 			for(Component c : joystick.getComponents()) {
 				
 				if(c.getName().equals("x")) {
-					increasePosition(-WALK_SPEED*c.getPollData(), 0, 0);
+					increasePosition(-WALK_SPEED*c.getPollData()*speedModifier, 0, 0);
 					if(c.getPollData() > 0) {
 						setRotY(0);
 						Camera.setAngleAroundPlayer(0);
@@ -111,6 +124,19 @@ public class Player extends Entity {
 				}*/
 			}
 		}
+	}
+	
+<<<<<<< HEAD
+	public void setJumpModifier(float modifier) {
+		jumpModifier = modifier;
+	}
+	
+	public void setSpeedModifier(float modifier) {
+		speedModifier = modifier;
+=======
+	public void setFloor(float floor) {
+		this.floor = floor;
+>>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 	}
 	
 	public int getHighscore() {
