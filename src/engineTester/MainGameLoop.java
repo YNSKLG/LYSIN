@@ -81,13 +81,19 @@ public class MainGameLoop {
 		
 		pauseGuis.add(backToGame);
 		
-		GuiTexture startMenu = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0),
-				new Vector2f(0.6f, 0.1f));
-		
 		GuiTexture startGame = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0.5f),
 				new Vector2f(0.6f, 0.1f));
+		
+		GuiTexture startSettings = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0),
+				new Vector2f(0.6f, -0.5f));
+		
+		GuiTexture startLeave = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0.5f),
+				new Vector2f(0.6f, 0.1f));
+		
+		
 		menu.add(startGame);
-		menu.add(startMenu);
+		menu.add(startSettings);
+		menu.add(startLeave);
 		
 		// ***** ENTITY GENERATION *****
 		
