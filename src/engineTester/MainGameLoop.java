@@ -31,7 +31,7 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Loading Game...");
 		
-		boolean menue = true;
+		boolean isMenue = true;
 		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
@@ -83,7 +83,10 @@ public class MainGameLoop {
 		
 		GuiTexture startMenu = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0),
 				new Vector2f(0.6f, 0.1f));
-				
+		
+		GuiTexture startGame = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0.5f),
+				new Vector2f(0.6f, 0.1f));
+		menu.add(startGame);
 		menu.add(startMenu);
 		
 		// ***** ENTITY GENERATION *****
@@ -116,13 +119,13 @@ public class MainGameLoop {
 		while(!Display.isCloseRequested()) {
 			InputHandler.testKeyboard();
 			
-			while(menue) {
+			while(isMenue) {
 				guiRenderer.render(menu);
 				Mouse.setGrabbed(false);
 				Display.update();
 				if(Mouse.isButtonDown(0)) {
 					Mouse.setGrabbed(true);
-					menue = false;
+					isMenue = false;
 					break;
 				}
 			}	
@@ -144,11 +147,10 @@ public class MainGameLoop {
 			
 				guiRenderer.render(pauseGuis);
 				
-				if((Mouse.getX()>=176 || Mouse.getX()<=543) && (Mouse.getY()>=246 || Mouse.getY()<=285)) {
-					if(Mouse.isButtonDown(0)) {
-						InputHandler.paused = false;
-						Mouse.setGrabbed(true);
-					}
+				if((Mouse.getX()>=176 && Mouse.getX()<=543) && ((Mouse.getY()>=246 && Mouse.getY()<=285)) && (Mouse.isButtonDown(0))) {
+					InputHandler.paused = false;
+					Mouse.setGrabbed(true);
+
 				}
 			
 				
