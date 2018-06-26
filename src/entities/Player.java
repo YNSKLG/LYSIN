@@ -64,22 +64,13 @@ public class Player extends Entity {
 	
 	private void checkInputs() {
 				
-<<<<<<< HEAD
 		if(Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			increasePosition(WALK_SPEED * speedModifier, 0, 0);
-=======
-		if(Keyboard.isKeyDown(Keyboard.KEY_A ) || Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			increasePosition(WALK_SPEED, 0, 0);
->>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 			setRotY(180);
 			facesRight = false;
 			Camera.setAngleAroundPlayer(180);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_D) || Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-<<<<<<< HEAD
 			increasePosition(-WALK_SPEED * speedModifier, 0, 0);
-=======
-			increasePosition(-WALK_SPEED, 0, 0);
->>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 			setRotY(0);
 			facesRight=true;
 			Camera.setAngleAroundPlayer(0);
@@ -126,17 +117,16 @@ public class Player extends Entity {
 		}
 	}
 	
-<<<<<<< HEAD
 	public void setJumpModifier(float modifier) {
 		jumpModifier = modifier;
 	}
 	
 	public void setSpeedModifier(float modifier) {
 		speedModifier = modifier;
-=======
+	}
+		
 	public void setFloor(float floor) {
 		this.floor = floor;
->>>>>>> branch 'yannis' of https://github.com/YNSKLG/LYSIN.git
 	}
 	
 	public int getHighscore() {
