@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
@@ -29,6 +30,8 @@ public class MainGameLoop {
 	public static void main(String[] args) {
 		
 		System.out.println(LocalDateTime.now() + " *** Loading Game...");
+		
+		boolean isMenue = true;
 		
 		DisplayManager.createDisplay();
 		Loader loader = new Loader();
@@ -71,12 +74,20 @@ public class MainGameLoop {
 		// ***** GUI *****
 		
 		List<GuiTexture> pauseGuis = new ArrayList<GuiTexture>();
+		List<GuiTexture> menu = new ArrayList<GuiTexture>();
 		
 		GuiTexture backToGame = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0),
 				new Vector2f(0.6f, 0.1f));
 		
 		pauseGuis.add(backToGame);
-				
+		
+		GuiTexture startMenu = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0),
+				new Vector2f(0.6f, 0.1f));
+		
+		GuiTexture startGame = new GuiTexture(loader.loadTexture("gui/BackToGame"), new Vector2f(0,0.5f),
+				new Vector2f(0.6f, 0.1f));
+		menu.add(startGame);
+		menu.add(startMenu);
 		
 		// ***** ENTITY GENERATION *****
 		
@@ -106,9 +117,19 @@ public class MainGameLoop {
 		System.out.println(LocalDateTime.now() + " *** Starting Game...");
 		
 		while(!Display.isCloseRequested()) {
-			
 			InputHandler.testKeyboard();
-				
+			
+			while(isMenue) {
+				guiRenderer.render(menu);
+				Mouse.setGrabbed(false);
+				Display.update();
+				if(Mouse.isButtonDown(0)) {
+					Mouse.setGrabbed(true);
+					isMenue = false;
+					break;
+				}
+			}	
+			
 			if(!InputHandler.paused) {
 				
 				camera.move();
@@ -125,6 +146,13 @@ public class MainGameLoop {
 			} else {
 			
 				guiRenderer.render(pauseGuis);
+				
+				if((Mouse.getX()>=176 && Mouse.getX()<=543) && ((Mouse.getY()>=246 && Mouse.getY()<=285)) && (Mouse.isButtonDown(0))) {
+					InputHandler.paused = false;
+					Mouse.setGrabbed(true);
+
+				}
+			
 				
 			}
 				
