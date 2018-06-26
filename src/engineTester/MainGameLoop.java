@@ -122,11 +122,9 @@ public class MainGameLoop {
 		
 		System.out.println(LocalDateTime.now() + " *** Starting Game...");
 		
-		boolean closed = true;
+		boolean closedReq = true;
 		
-		while(closed) {
-			
-			
+		while(closedReq) {
 			
 			System.out.println("X: "+Mouse.getX() + "   Y: " + Mouse.getY());
 			
@@ -135,7 +133,7 @@ public class MainGameLoop {
 			while(isMenue) {
 				
 				if(Display.isCloseRequested()) {
-					closed = false;
+					closedReq = false;
                     break;
                 }
 				
@@ -171,11 +169,13 @@ public class MainGameLoop {
 					Mouse.setGrabbed(true);
 
 				}
-			
-				
 			}
-				
+			
 			DisplayManager.updateDisplay();
+			
+			if(Display.isCloseRequested()) {
+				closedReq = false;
+			}
 		}
 		
 		
